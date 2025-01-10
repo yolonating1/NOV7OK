@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface NavigationProps {
   setCurrentPage: (page: string) => void;
@@ -40,6 +40,17 @@ export default function Navigation({ setCurrentPage, currentPage }: NavigationPr
                 }`}
               >
                 Home
+              </a>
+              <a
+                href="/articles"
+                onClick={(e) => handleNavClick('articles', e)}
+                className={`inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 ${
+                  currentPage === 'articles'
+                    ? 'border-blue-600 text-gray-900'
+                    : 'border-transparent text-gray-500 hover:border-blue-600'
+                }`}
+              >
+                Articles
               </a>
               <a
                 href="/about"
@@ -99,6 +110,13 @@ export default function Navigation({ setCurrentPage, currentPage }: NavigationPr
               className="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
             >
               Home
+            </a>
+            <a
+              href="/articles"
+              onClick={(e) => handleNavClick('articles', e)}
+              className="block pl-3 pr-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
+            >
+              Articles
             </a>
             <a
               href="/about"

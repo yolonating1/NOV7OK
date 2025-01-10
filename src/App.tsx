@@ -19,14 +19,29 @@ import CategoryTabs from './components/CategoryTabs';
 import Navigation from './components/Navigation';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
+import Articles from './components/Articles';
+import ArticleView from './components/ArticleView';
+import Team from './components/Team';
+import Testimonials from './components/Testimonials';
+
+interface PageState {
+  name: string;
+  params?: {
+    slug?: string;
+  };
+}
 
 function App() {
   const [activeTab, setActiveTab] = useState<string>('all');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [activeToolTab, setActiveToolTab] = useState<'analyzer' | 'templates'>('analyzer');
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState<PageState>({ name: 'home' });
 
-  // Maintain all existing FAQ data
+  const handlePageChange = (page: string, params?: { slug?: string }) => {
+    setCurrentPage({ name: page, params });
+  };
+
+  // Keep existing FAQ data
   const faqs = [
     {
       question: "Which copywriting course is best for beginners?",
@@ -51,9 +66,18 @@ function App() {
   ];
 
   const renderPage = () => {
-    switch (currentPage) {
+    switch (currentPage.name) {
+      case 'article':
+        return currentPage.params?.slug ? (
+          <ArticleView 
+            slug={currentPage.params.slug} 
+            setCurrentPage={(page) => handlePageChange(page)} 
+          />
+        ) : null;
+      case 'articles':
+        return <Articles onArticleClick={(slug) => handlePageChange('article', { slug })} />;
       case 'about':
-        return <AboutUs setCurrentPage={setCurrentPage} />;
+        return <AboutUs setCurrentPage={(page) => handlePageChange(page)} />;
       case 'contact':
         return <ContactUs />;
       default:
@@ -62,16 +86,20 @@ function App() {
             {/* Hero Section */}
             <header className="relative overflow-hidden bg-gradient-to-r from-blue-700 to-blue-900 text-white">
               {/* Keep existing hero section */}
-              {/* ... Your existing hero section code ... */}
             </header>
 
-            {/* Keep all existing sections */}
             {/* Trust Indicators */}
             {/* Instant Opportunity Section */}
             {/* Features Section */}
             {/* Courses Section */}
             <CategoryTabs activeTab={activeTab} setActiveTab={setActiveTab} />
             <CourseSection activeTab={activeTab} />
+
+            {/* Team Section */}
+            <Team />
+
+            {/* Testimonials Section */}
+            <Testimonials />
 
             {/* Tools Section */}
             <section className="py-20 bg-white">
@@ -99,7 +127,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <Navigation setCurrentPage={setCurrentPage} currentPage={currentPage} />
+      <Navigation 
+        setCurrentPage={(page) => handlePageChange(page)} 
+        currentPage={currentPage.name} 
+      />
       {renderPage()}
       
       {/* Footer */}
