@@ -19,8 +19,8 @@ import CategoryTabs from './components/CategoryTabs';
 import Navigation from './components/Navigation';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
-import Articles from './components/Articles';
-import ArticleView from './components/ArticleView';
+import BlogList from './components/BlogList';
+import BlogPost from './components/BlogPost';
 import Team from './components/Team';
 import Testimonials from './components/Testimonials';
 
@@ -41,41 +41,17 @@ function App() {
     setCurrentPage({ name: page, params });
   };
 
-  // Keep existing FAQ data
-  const faqs = [
-    {
-      question: "Which copywriting course is best for beginners?",
-      answer: "For beginners, we recommend either TextRoyal's Professional Writing Certification for immediate earning opportunities, or AWAI's Accelerated Program for comprehensive copywriting training."
-    },
-    {
-      question: "How much can I earn after completing these copywriting courses?",
-      answer: "Our graduates typically start earning $25-$35 per hour, with experienced copywriters making $100+ per hour. Many successful students earn six-figure incomes through client work and royalties."
-    },
-    {
-      question: "Are these copywriting courses suitable for remote work?",
-      answer: "Yes! All our copywriting courses are designed for remote work success. You'll learn how to find clients, manage projects, and deliver quality work from anywhere in the world."
-    },
-    {
-      question: "How long does it take to complete the copywriting courses?",
-      answer: "Course completion times vary: TextRoyal certification can be completed in days, while comprehensive programs like AWAI's Accelerated Program typically take 3-6 months, depending on your pace."
-    },
-    {
-      question: "Do I get a certificate after completing the copywriting courses?",
-      answer: "Yes, all our copywriting courses include professional certificates upon completion. These certificates are recognized by top marketing agencies and businesses worldwide."
-    }
-  ];
-
   const renderPage = () => {
     switch (currentPage.name) {
-      case 'article':
+      case 'blog':
         return currentPage.params?.slug ? (
-          <ArticleView 
+          <BlogPost 
             slug={currentPage.params.slug} 
             setCurrentPage={(page) => handlePageChange(page)} 
           />
-        ) : null;
-      case 'articles':
-        return <Articles onArticleClick={(slug) => handlePageChange('article', { slug })} />;
+        ) : (
+          <BlogList onPostClick={(slug) => handlePageChange('blog', { slug })} />
+        );
       case 'about':
         return <AboutUs setCurrentPage={(page) => handlePageChange(page)} />;
       case 'contact':
@@ -85,12 +61,26 @@ function App() {
           <>
             {/* Hero Section */}
             <header className="relative overflow-hidden bg-gradient-to-r from-blue-700 to-blue-900 text-white">
-              {/* Keep existing hero section */}
+              <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+                <div className="text-center">
+                  <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                    Professional Copywriting Courses
+                  </h1>
+                  <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                    Master the art of copywriting with expert-led training and certification
+                  </p>
+                  <div className="flex justify-center space-x-4">
+                    <a
+                      href="#courses"
+                      className="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+                    >
+                      View Courses <ArrowRight className="ml-2 h-5 w-5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </header>
 
-            {/* Trust Indicators */}
-            {/* Instant Opportunity Section */}
-            {/* Features Section */}
             {/* Courses Section */}
             <CategoryTabs activeTab={activeTab} setActiveTab={setActiveTab} />
             <CourseSection activeTab={activeTab} />
@@ -103,22 +93,33 @@ function App() {
 
             {/* Tools Section */}
             <section className="py-20 bg-white">
-              {/* ... Your existing tools section code ... */}
-            </section>
-
-            {/* Resources Section */}
-            <section className="py-20 bg-gray-50">
-              {/* ... Your existing resources section code ... */}
-            </section>
-
-            {/* FAQ Section */}
-            <section className="py-20 bg-white">
-              {/* ... Your existing FAQ section code ... */}
-            </section>
-
-            {/* CTA Section */}
-            <section className="py-20 bg-gradient-to-r from-blue-700 to-blue-900">
-              {/* ... Your existing CTA section code ... */}
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-center mb-12">
+                  <div className="flex space-x-4">
+                    <button
+                      onClick={() => setActiveToolTab('analyzer')}
+                      className={`px-6 py-3 rounded-lg font-medium ${
+                        activeToolTab === 'analyzer'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      Headline Analyzer
+                    </button>
+                    <button
+                      onClick={() => setActiveToolTab('templates')}
+                      className={`px-6 py-3 rounded-lg font-medium ${
+                        activeToolTab === 'templates'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      Copy Templates
+                    </button>
+                  </div>
+                </div>
+                {activeToolTab === 'analyzer' ? <HeadlineAnalyzer /> : <TemplateLibrary />}
+              </div>
             </section>
           </>
         );
