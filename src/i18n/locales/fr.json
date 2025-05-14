@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Cours Professionnels de Copywriting | Formation et Certification d'Experts",
+    "description": "Transformez votre carrière avec des cours professionnels de copywriting. Nos programmes de formation et de certification ont aidé plus de 50 000 rédacteurs à lancer leur carrière."
+  },
+  "nav": {
+    "home": "Accueil",
+    "courses": "Cours",
+    "tools": "Outils",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Cours Professionnels de Copywriting",
+    "subtitle": "Maîtrisez l'art du copywriting avec une formation et une certification d'experts",
+    "cta": {
+      "courses": "Voir les Cours",
+      "tools": "Explorer les Outils"
+    }
+  }
+}

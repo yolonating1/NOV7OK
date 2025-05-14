@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Professional Copywriting Courses | Expert Copywriting Training & Certification",
+    "description": "Transform your career with professional copywriting courses. Our industry-leading copywriting training and certification programs have helped 50,000+ writers launch successful careers."
+  },
+  "nav": {
+    "home": "Home",
+    "courses": "Courses",
+    "tools": "Tools",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Professional Copywriting Courses",
+    "subtitle": "Master the art of copywriting with expert-led training and certification",
+    "cta": {
+      "courses": "View Courses",
+      "tools": "Explore Tools"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Professionelle Copywriting-Kurse | Experten-Training & Zertifizierung",
+    "description": "Verwandeln Sie Ihre Karriere mit professionellen Copywriting-Kursen. Unsere branchenführenden Schulungs- und Zertifizierungsprogramme haben über 50.000 Autoren geholfen."
+  },
+  "nav": {
+    "home": "Startseite",
+    "courses": "Kurse",
+    "tools": "Tools",
+    "blog": "Blog",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "Professionelle Copywriting-Kurse",
+    "subtitle": "Meistern Sie die Kunst des Copywritings mit Experten-Training und Zertifizierung",
+    "cta": {
+      "courses": "Kurse ansehen",
+      "tools": "Tools erkunden"
+    }
+  }
+}
